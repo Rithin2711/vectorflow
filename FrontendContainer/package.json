@@ -1,0 +1,28 @@
+{
+  "name": "vectorflow-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "VectorFlow FrontendContainer: Interactive vector field simulation and learning game.",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "d3": "^7.9.0",
+    "plotly.js-dist-min": "^2.35.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^16.0.1",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "jsdom": "^24.1.0",
+    "vite": "^5.4.2",
+    "vitest": "^2.0.5"
+  }
+}
