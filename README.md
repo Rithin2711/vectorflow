@@ -1,3 +1,8 @@
 # Project Repository
 
-This is the initial README file for the project.
+FlowQuest Frontend is located in FrontendContainer. See README_FLOWQUEST.md for details.
+
+Quick start:
+- cd FrontendContainer
+- npm install
+- npm start
