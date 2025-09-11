@@ -175,20 +175,31 @@ export default function VectorFieldCanvas({
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
 
-    const loop = () => {
+    const prefersReduced = typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const renderOnce = () => {
       const rect = canvas.getBoundingClientRect();
       draw(ctx, rect.width, rect.height || 480);
+    };
+
+    const loop = () => {
+      renderOnce();
       requestRef.current = requestAnimationFrame(loop);
     };
-    if (isRunning) {
+
+    if (isRunning && !prefersReduced) {
       requestRef.current = requestAnimationFrame(loop);
-    } else if (requestRef.current) {
-      cancelAnimationFrame(requestRef.current);
-      requestRef.current = null;
-      // draw once to display any end-state messages
-      const rect = canvas.getBoundingClientRect();
-      draw(ctx, rect.width, rect.height || 480);
+    } else {
+      if (requestRef.current) {
+        cancelAnimationFrame(requestRef.current);
+        requestRef.current = null;
+      }
+      // draw once to display any end-state messages or static frame
+      renderOnce();
     }
+
     return () => {
       if (requestRef.current) cancelAnimationFrame(requestRef.current);
     };
@@ -211,8 +222,12 @@ export default function VectorFieldCanvas({
   };
 
   return (
-    <div style={{width: '100%', height: '520px'}}>
-      <canvas ref={canvasRef} style={{width: '100%', height: '100%', display: 'block'}} onClick={handleClick} />
+    <div className="canvas-area">
+      <canvas
+        ref={canvasRef}
+        style={{ width: '100%', height: '100%', display: 'block' }}
+        onClick={handleClick}
+      />
     </div>
   );
 }

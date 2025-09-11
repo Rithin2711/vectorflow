@@ -109,17 +109,6 @@ function App() {
 
       <div className="left-panel">
         <div className="panel">
-          <div className="section-title">Equation</div>
-          <EquationInput
-            initialFx={ode.fx}
-            initialFy={ode.fy}
-            onApply={onApplyEquation}
-            error={error}
-          />
-          <div className="helper">Enter component functions f(x,y), g(x,y) to define dx/dt and dy/dt.</div>
-        </div>
-
-        <div className="panel">
           <div className="section-title">Simulation</div>
           <SimulationControls
             isRunning={isRunning}
@@ -156,7 +145,7 @@ function App() {
             onUpdateChallenges={setChallenges}
           />
         </div>
-        <div className="canvas-wrap panel" style={{padding: 0}}>
+        <div className="canvas-wrap panel graph-paper" style={{padding: 0}}>
           <div className="canvas-toolbar">
             <button className="btn" onClick={() => setTarget(position)}>Set Target Here</button>
             <button className="btn secondary" onClick={() => setObstacles([])}>Clear Obstacles</button>
@@ -172,6 +161,16 @@ function App() {
             onCanvasClick={onCanvasClick}
             onReachTarget={onReachTarget}
           />
+        </div>
+        <div className="panel" style={{ marginTop: 0 }}>
+          <div className="section-title">Equation</div>
+          <EquationInput
+            initialFx={ode.fx}
+            initialFy={ode.fy}
+            onApply={onApplyEquation}
+            error={error}
+          />
+          <div className="helper">Enter component functions f(x,y), g(x,y) to define dx/dt and dy/dt.</div>
         </div>
       </div>
 
