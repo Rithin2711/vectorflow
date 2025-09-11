@@ -3,7 +3,6 @@ import useGameStore from '../store/store';
 import { evalVectorField } from './vectorField';
 import { integrateRK4 } from './integrators';
 import { detectCollision, buildObstacles, buildGoal } from './collision';
-import { randomColor } from '../utils/colors';
 
 const TRAIL_MAX = 1000;
 
