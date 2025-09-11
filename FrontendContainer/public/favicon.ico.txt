@@ -1,0 +1,1 @@
+This is a placeholder indicating a favicon.ico should be placed here during deployment. Do not use this file as an icon.

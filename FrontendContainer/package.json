@@ -1,0 +1,48 @@
+{
+  "name": "flowquest-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FlowQuest Frontend - Interactive vector calculus game using React and Phaser.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "test": "react-scripts test --watchAll=false",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "d3": "^7.9.0",
+    "phaser": "^3.80.1",
+    "plotly.js-dist-min": "^2.35.2",
+    "prop-types": "^15.8.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
+    "zustand": "^4.5.2",
+    "mathjs": "^13.0.3",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^9.9.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-jsx-a11y": "^6.9.0",
+    "eslint-plugin-import": "^2.30.0",
+    "react-scripts": "5.0.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all",
+      "supports es6-module"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
