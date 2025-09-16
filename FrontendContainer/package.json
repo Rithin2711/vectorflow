@@ -1,14 +1,23 @@
 {
-  "name": "react-kavia",
+  "name": "flowquest-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "d3": "^7.9.0",
+    "lodash": "^4.17.21",
+    "mathjs": "^13.0.2",
+    "phaser": "^3.80.1",
+    "plotly.js-dist-min": "^2.35.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1"
+    "react-router-dom": "^6.26.2",
+    "react-scripts": "^5.0.1",
+    "uuid": "^9.0.1",
+    "zustand": "^4.5.4"
   },
   "scripts": {
     "start": "react-scripts start",
+    "prebuild": "npx --yes update-browserslist-db@latest || true",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
