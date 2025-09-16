@@ -33,12 +33,12 @@ export default function EquationInput() {
       <div className="controls" style={{ gap: 6 }}>
         <div className="control-row">
           <label htmlFor="eq-x">dx/dt</label>
-          <input id="eq-x" type="text" value={equations.x} onChange={onChange('x')} placeholder="dx/dt = y" />
+          <input id="eq-x" type="text" aria-label="dx/dt equation" value={equations.x} onChange={onChange('x')} placeholder="dx/dt = y" />
         </div>
         {errors.x && <div style={{ color: '#c0392b', fontSize: 12, marginTop: -4, marginBottom: 4 }}>{errors.x}</div>}
         <div className="control-row">
           <label htmlFor="eq-y">dy/dt</label>
-          <input id="eq-y" type="text" value={equations.y} onChange={onChange('y')} placeholder="dy/dt = -x" />
+          <input id="eq-y" type="text" aria-label="dy/dt equation" value={equations.y} onChange={onChange('y')} placeholder="dy/dt = -x" />
         </div>
         {errors.y && <div style={{ color: '#c0392b', fontSize: 12, marginTop: -4, marginBottom: 4 }}>{errors.y}</div>}
         <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>

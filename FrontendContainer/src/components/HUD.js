@@ -22,11 +22,11 @@ export default function HUD({ onReset }) {
       <div className="controls">
         <div className="control-row">
           <label>Name</label>
-          <input type="text" value={player.name} onChange={(e)=>setPlayerName(e.target.value)} />
+          <input type="text" aria-label="Player name" value={player.name} onChange={(e)=>setPlayerName(e.target.value)} />
         </div>
         <div className="control-row">
           <label>Score</label>
-          <input type="number" value={score} onChange={(e)=>setScore(Number(e.target.value))} />
+          <input type="number" aria-label="Score value" value={score} onChange={(e)=>setScore(Number(e.target.value))} />
         </div>
         <div>
           <button className="btn" onClick={submit}>Save Score</button>

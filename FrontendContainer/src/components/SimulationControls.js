@@ -18,7 +18,7 @@ export default function SimulationControls({ onStart, onStop, onReset }) {
       <div className="controls">
         <div className="control-row">
           <label>Integrator</label>
-          <select value={integrator} onChange={(e)=>setIntegrator(e.target.value)}>
+          <select aria-label="Integrator method" value={integrator} onChange={(e)=>setIntegrator(e.target.value)}>
             <option value="rk4">RK4</option>
             <option value="euler">Euler</option>
           </select>
@@ -45,10 +45,10 @@ export default function SimulationControls({ onStart, onStop, onReset }) {
         </div>
 
         <h4>Bounds</h4>
-        <div className="control-row"><label>xMin</label><input type="number" value={bounds.xMin} onChange={onChangeBounds('xMin')} /></div>
-        <div className="control-row"><label>xMax</label><input type="number" value={bounds.xMax} onChange={onChangeBounds('xMax')} /></div>
-        <div className="control-row"><label>yMin</label><input type="number" value={bounds.yMin} onChange={onChangeBounds('yMin')} /></div>
-        <div className="control-row"><label>yMax</label><input type="number" value={bounds.yMax} onChange={onChangeBounds('yMax')} /></div>
+        <div className="control-row"><label htmlFor="bounds-xmin">xMin</label><input id="bounds-xmin" aria-label="xMin bound" type="number" value={bounds.xMin} onChange={onChangeBounds('xMin')} /></div>
+        <div className="control-row"><label htmlFor="bounds-xmax">xMax</label><input id="bounds-xmax" aria-label="xMax bound" type="number" value={bounds.xMax} onChange={onChangeBounds('xMax')} /></div>
+        <div className="control-row"><label htmlFor="bounds-ymin">yMin</label><input id="bounds-ymin" aria-label="yMin bound" type="number" value={bounds.yMin} onChange={onChangeBounds('yMin')} /></div>
+        <div className="control-row"><label htmlFor="bounds-ymax">yMax</label><input id="bounds-ymax" aria-label="yMax bound" type="number" value={bounds.yMax} onChange={onChangeBounds('yMax')} /></div>
 
         <div style={{ display: 'flex', gap: 8 }}>
           <button className="btn" onClick={()=>onStart(integrator)}>Start</button>

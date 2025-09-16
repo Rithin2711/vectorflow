@@ -2,6 +2,15 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useGameStore } from '../state/gameStore';
 import { eulerStep, rk4Step } from '../utils/equations';
 
+/**
+ * PUBLIC_INTERFACE
+ * FieldCanvas renders:
+ * - Grid and axes
+ * - Vector field arrows computed from user equations
+ * - Particle and its trajectory over time
+ * - Target and circular obstacles
+ * It also runs a smooth simulation loop integrating the ODE dx/dt, dy/dt.
+ */
 const COLORS = {
   gridMajor: 'rgba(90, 100, 120, 0.25)',
   gridMinor: 'rgba(90, 100, 120, 0.12)',
@@ -283,6 +292,13 @@ export default function FieldCanvas({ running, setRunning, integrator }) {
     ctx.stroke();
   };
 
+  // Reset particle when bounds or equations change to visualize from start
+  useEffect(() => {
+    // Soft reset: keep time zero and clear trail
+    setParticle((p) => ({ x: 0, y: 5, t: 0, trail: [] }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bounds, compileEquations]);
+
   // Sim loop
   useEffect(() => {
     let raf = null;
@@ -354,17 +370,30 @@ export default function FieldCanvas({ running, setRunning, integrator }) {
 
     raf = requestAnimationFrame(stepSim);
     return () => { if (raf) cancelAnimationFrame(raf); };
+  // We intentionally exclude particle to avoid restarting RAF per state update
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [running, dt, speed, bounds, obstacles, target, samples, integrator, difficulty]);
+  }, [running, dt, speed, bounds, obstacles, target, samples, integrator, difficulty, compileEquations]);
 
+  // PUBLIC_INTERFACE
   const reset = () => setParticle({ x: 0, y: 5, t: 0, trail: [] });
 
   return (
     <div className="panel">
       <h3>Field</h3>
-      <div className="canvas-wrap" onDoubleClick={reset}>
-        <canvas ref={canvasRef} style={{ width: '100%', height: '100%', background: 'linear-gradient(180deg, var(--panel-bg), var(--panel-bg))' }} />
+      <div className="canvas-wrap" onDoubleClick={reset} title="Double-click to reset particle">
+        <canvas
+          ref={canvasRef}
+          style={{
+            width: '100%',
+            height: '100%',
+            background: 'linear-gradient(180deg, var(--panel-bg), var(--panel-bg))',
+            willChange: 'transform',
+          }}
+        />
         <div className="overlay" style={{ backdropFilter: 'blur(4px)' }}>
+          <div style={{ marginBottom: 6, fontWeight: 700 }}>
+            {running ? '● Running' : '■ Stopped'}
+          </div>
           <div className="legend"><span className="dot" style={{ background: COLORS.particle }} /> Particle</div>
           <div className="legend"><span className="dot" style={{ background: COLORS.obstacleStroke }} /> Obstacles</div>
           <div className="legend"><span className="dot" style={{ background: COLORS.targetStroke }} /> Target</div>
