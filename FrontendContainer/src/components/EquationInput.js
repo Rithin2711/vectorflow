@@ -19,7 +19,6 @@ export default function EquationInput() {
       alert('Equations valid!');
     } catch (e) {
       const msg = String(e.message || e);
-      // naive axis detection
       if (msg.includes('x')) setErrors((s)=>({ ...s, x: msg }));
       if (msg.includes('y')) setErrors((s)=>({ ...s, y: msg }));
       if (!msg.includes('x') && !msg.includes('y')) {
@@ -29,20 +28,20 @@ export default function EquationInput() {
   };
 
   return (
-    <div className="panel">
-      <h3>Equations</h3>
-      <div className="controls">
+    <div className="panel" style={{ marginTop: 12 }}>
+      <h3 style={{ marginBottom: 8 }}>Equation Editor</h3>
+      <div className="controls" style={{ gap: 6 }}>
         <div className="control-row">
           <label htmlFor="eq-x">dx/dt</label>
           <input id="eq-x" type="text" value={equations.x} onChange={onChange('x')} placeholder="dx/dt = y" />
         </div>
-        {errors.x && <div style={{ color: '#c0392b', fontSize: 12 }}>{errors.x}</div>}
+        {errors.x && <div style={{ color: '#c0392b', fontSize: 12, marginTop: -4, marginBottom: 4 }}>{errors.x}</div>}
         <div className="control-row">
           <label htmlFor="eq-y">dy/dt</label>
           <input id="eq-y" type="text" value={equations.y} onChange={onChange('y')} placeholder="dy/dt = -x" />
         </div>
-        {errors.y && <div style={{ color: '#c0392b', fontSize: 12 }}>{errors.y}</div>}
-        <div style={{ display: 'flex', gap: 8 }}>
+        {errors.y && <div style={{ color: '#c0392b', fontSize: 12, marginTop: -4, marginBottom: 4 }}>{errors.y}</div>}
+        <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
           <button className="btn" onClick={validate}>Validate</button>
         </div>
       </div>
